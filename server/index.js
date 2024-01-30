@@ -10,3 +10,4 @@ const httpServer = http.createServer(app);
 httpServer.listen(PORT, HOST, () =>
   console.log(`Server is listening http://${HOST}:${PORT}`)
 );
+

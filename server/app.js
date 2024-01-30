@@ -1,9 +1,16 @@
 const express = require('express');
 const { STATIC_PATH } = require('./constants');
+const cors = require('cors');
 const { errorHandlers } = require('./middleware');
 const router = require('./routes');
 
 const app = express();
+
+const corsOPtions = {
+    origin: '*'
+}
+
+app.use(cors(corsOPtions));
 
 app.use(express.static(STATIC_PATH));
 
