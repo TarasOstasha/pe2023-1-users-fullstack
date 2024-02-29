@@ -1,0 +1,37 @@
+version: '3'
+services:
+
+  front-react:
+    build:
+      context: ./client
+
+    environment:
+      NODE_ENV: development
+    depends_on:
+      - server-dev
+    volumes:
+      - ./client:/client
+      - /client/node_modules
+    ports:
+      - "3000:3000"
+
+  server-dev:
+    build:
+      context: ./server
+
+    environment:
+      NODE_ENV: development
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo-dev
+    volumes:
+      - ./var/www/html/images:/var/www/html/images
+      - ./server:/server
+      - /server/node_modules
+
+
+  mongo-dev:
+    image: mongo:4.4.6-bionic
+    ports:
+      - "27027:27017"
